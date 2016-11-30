@@ -3,9 +3,9 @@ package source
 import (
 	"fmt"
 	"io/ioutil"
-	"nfl/strings"
 	"os"
 	"path/filepath"
+	"poster/strings"
 )
 
 type Iterator struct {
