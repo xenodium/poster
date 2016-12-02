@@ -9,13 +9,18 @@ import (
 	"poster/source"
 )
 
-func Write(image image.Image, filePaths []string, writer io.Writer) {
-	writer.Write([]byte(`<body style="font-family:monospace;
+func Write(image image.Image, filePaths []string, bgColor string, writer io.Writer) {
+	if len(bgColor) == 0 {
+		bgColor = "#FFFFFF"
+	}
+
+	writer.Write([]byte(fmt.Sprintf(`<body style="font-family:monospace;
+                            background-color:%s;
                             font-size:1.1em;
                             font-size:12px;
                             letter-spacing:0.3em;
                             line-height:0.5em;
-                            white-space:pre;">`))
+                            white-space:pre;">`, bgColor)))
 
 	it := source.NewIterator(filePaths)
 
