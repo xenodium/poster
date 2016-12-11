@@ -18,14 +18,21 @@ type args struct {
 
 func parseArgs() args {
 	args := args{}
-	flag.StringVar(&args.imagePath, "imagepath", "", "path to image file")
-	flag.StringVar(&args.searchPath, "searchpath", "", "path to search for source files (recursively)")
-	flag.StringVar(&args.bgColor, "bgcolor", "", "background color (eg #FFFFFF)")
+	flag.StringVar(&args.searchPath, "searchpath", "", "`path` to search for source files recursively")
+	flag.StringVar(&args.bgColor, "bgcolor", "", "background `\"color\"`, for example \"#FFFFFF\" (optional)")
+
+	flag.CommandLine.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "\n  image.png\n\n")
+		flag.PrintDefaults()
+	}
 
 	flag.Parse()
 
-	if len(args.imagePath) == 0 || len(args.searchPath) == 0 {
-		flag.Usage()
+	args.imagePath = flag.Arg(0)
+
+	if args.searchPath == "" || args.imagePath == "" {
+		flag.CommandLine.Usage()
 		os.Exit(1)
 	}
 
