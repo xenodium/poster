@@ -1,5 +1,7 @@
 package strings
 
+import "regexp"
+
 type Iterator struct {
 	content string
 	pos     int
@@ -7,7 +9,8 @@ type Iterator struct {
 
 func NewIterator(content string) *Iterator {
 	return &Iterator{
-		content: content,
+		// Remove all whitespace. Makes for better visuals.
+		content: regexp.MustCompile(`\s+`).ReplaceAllString(content, ` `),
 		pos:     -1,
 	}
 }
