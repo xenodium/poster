@@ -22,9 +22,9 @@ func parseArgs() args {
 	flag.StringVar(&args.bgColor, "bgcolor", "", "background `\"color\"`, for example \"#FFFFFF\" (optional)")
 
 	flag.CommandLine.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "\n  image.png\n\n")
+		fmt.Fprintf(os.Stderr, "Usage of %s:\n\n", os.Args[0])
 		flag.PrintDefaults()
+		fmt.Fprintf(os.Stderr, "\n  image.png\n\n")
 	}
 
 	flag.Parse()
