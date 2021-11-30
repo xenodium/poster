@@ -1,0 +1,20 @@
+* Building
+If you already have your golang toolchain set up
+#+begin_src sh
+  cd path/to/poster
+  go build
+#+end_src
+
+* Usage (generate poster .html)
+#+begin_src sh
+  ./poster -searchpath path/to/source/code/dir path/to/some/image.png
+#+end_src
+
+#+RESULTS:
+: Generated path/to/some/image.html
+
+* Convert .html to .png
+** Chrome
+#+begin_src sh
+  path/to/google-chrome --headless --hide-scrollbars --window-size=600,600 --screenshot path/to/some/image.html
+#+end_src
