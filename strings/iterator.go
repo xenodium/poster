@@ -10,7 +10,7 @@ type Iterator struct {
 func NewIterator(content string) *Iterator {
 	return &Iterator{
 		// Remove all whitespace. Makes for better visuals.
-		content: regexp.MustCompile(`\s+`).ReplaceAllString(content, ` `),
+		content: regexp.MustCompile(`\s+`).ReplaceAllString(content, ``),
 		pos:     -1,
 	}
 }
